@@ -6,7 +6,7 @@ import headers from "eslint-plugin-headers";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { ignores: ["dist/**/*", "playground/**/*"] },
-  { files: ["**/*.{js,mjs,cjs,ts}"] },
+  { files: ["**/*.ts"] },
   { languageOptions: { globals: globals.node } },
   js.configs.recommended,
   ...ts.configs.recommended,
@@ -14,7 +14,7 @@ export default [
     plugins: {
       headers,
     },
-    files: ["src/**/*.{js,mjs,cjs,ts}"],
+    files: ["src/**/*.ts"],
     ignores: ["dist/**/*"],
     rules: {
       "no-restricted-syntax": [
@@ -35,7 +35,7 @@ export default [
           path: "header.txt",
           trailingNewlines: 2,
           variables: {
-            year: "2025",
+            year: new Date().getFullYear().toString(),
             author: "Cleboost",
           },
         },
