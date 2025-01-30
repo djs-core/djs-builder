@@ -27,9 +27,9 @@ function bundleBot(config: Config): Readable {
     format: config.format || ["cjs"],
     outDir: config.dist || "dist",
     silent: config.log !== "debug",
-    clean: config.clean || true,
+    clean: config.clean ?? true,
     entryPoints: config.files,
-    minify: config.minify || false,
+    minify: config.minify ?? false,
   })
     .then(() => {
       stream.emit("step", { id: "bundle", status: "done" });
