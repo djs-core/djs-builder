@@ -43,4 +43,9 @@ export interface Config {
    * Just copy raw file, no transformation/protection
    */
   artefact?: string[];
+  /**
+   * Clean the output directory before building
+   * @default true
+   */
+  clean?: boolean;
 }
