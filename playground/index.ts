@@ -7,7 +7,7 @@ async function main() {
     files: ["toBuild/**/*.ts"],
     minify: true,
     production: true,
-    log: "extend"
+    log: "extend",
   });
   stream.on("step", (step) => {
     log(step);

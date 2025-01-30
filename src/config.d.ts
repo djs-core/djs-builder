@@ -42,5 +42,5 @@ export interface Config {
    * File to include in build folder
    * Just copy raw file, no transformation/protection
    */
-  artefact?: string[]
+  artefact?: string[];
 }
