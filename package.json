@@ -1,9 +1,9 @@
 {
   "name": "@djs-core/builder",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Builder for djs-core",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Cleboost",
   "repository": {
     "url": "https://github.com/djs-core/djs-builder"
@@ -22,7 +22,7 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "glob": "^11.0.1",
+    "glob": "11.0.1",
     "javascript-obfuscator": "4.1.1",
     "tsup": "8.3.6"
   },
