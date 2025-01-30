@@ -1,0 +1,17 @@
+src/
+playground/
+node_modules/
+
+
+.vscode/
+.idea/
+.github/
+.DS_Store
+
+header.txt
+tsconfig.json
+tsup-dev.config.ts
+tsup-prod.config.ts
+eslint.config.mjs
+.prettierrc
+.prettierignore
