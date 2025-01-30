@@ -27,7 +27,7 @@ export interface Config {
    * More option soon... :)
    */
   obfuscation?: boolean;
-  log?: "none" | "simple" | "extend";
+  log?: "none" | "simple" | "extend" | "debug";
   /**
    * Minify the output files
    * @default false

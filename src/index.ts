@@ -26,7 +26,7 @@ function bundleBot(config: Config): Readable {
   build({
     format: config.format || ["cjs"],
     outDir: config.dist || "dist",
-    silent: config.log !== "extend",
+    silent: config.log !== "debug",
     clean: true,
     entryPoints: config.files,
     minify: config.minify || false,
