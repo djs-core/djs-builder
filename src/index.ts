@@ -46,7 +46,9 @@ function bundleBot(config: Config): Readable {
         id: "bundle",
         status: "error",
         message:
-          error instanceof Error ? error.message : "Erreur inconnue lors du build",
+          error instanceof Error
+            ? error.message
+            : "Erreur inconnue lors du build",
       });
       stream.emit("step", { id: "end", status: "done" });
       stream.push(null);
