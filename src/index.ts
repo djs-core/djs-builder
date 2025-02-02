@@ -11,11 +11,12 @@ import { obfuscate } from "javascript-obfuscator";
 import { globSync } from "glob";
 import fs from "fs";
 import path from "path";
+import { BundlerReadable } from "./readable";
 
-function bundleBot(config: Config): Readable {
+function bundleBot(config: Config): BundlerReadable {
   const stream = new Readable({
     read() {},
-  });
+  }) as BundlerReadable;
 
   if (config.files.length === 0) {
     stream.emit("step", {
@@ -27,7 +28,7 @@ function bundleBot(config: Config): Readable {
     return stream;
   }
 
-  stream.emit("step", { id: "bundle", status: "start" });
+  stream.emit("step", {id : "bundle", status: "start"});
 
   (async () => {
     try {
@@ -50,9 +51,6 @@ function bundleBot(config: Config): Readable {
             ? error.message
             : "Erreur inconnue lors du build",
       });
-      stream.emit("step", { id: "end", status: "done" });
-      stream.push(null);
-      return;
     }
 
     if (config.obfuscation || typeof config.obfuscation === "object") {
@@ -70,7 +68,7 @@ function bundleBot(config: Config): Readable {
         });
         fs.writeFileSync(file, obfuscated.getObfuscatedCode());
         if (config.log === "extend") {
-          stream.emit("step", { id: "obfuscation", status: "work", file });
+          stream.emit("step", { id: "obfuscation", status: "progress", message: file });
         }
       }
       stream.emit("step", { id: "obfuscation", status: "done" });
@@ -87,8 +85,8 @@ function bundleBot(config: Config): Readable {
         if (config.log === "extend") {
           stream.emit("step", {
             id: "artefact",
-            status: "work",
-            file: `index.${art}`,
+            status: "progress",
+            message: `index.${art}`,
           });
         }
         stream.emit("step", { id: "artefact", status: "done" });
@@ -111,14 +109,14 @@ function bundleBot(config: Config): Readable {
       if (config.log === "extend") {
         stream.emit("step", {
           id: "production",
-          status: "work",
-          file: "package.json",
+          status: "progress",
+          message: "package.json",
         });
       }
       stream.emit("step", { id: "production", status: "done" });
     }
 
-    stream.emit("step", { id: "end", status: "done" });
+    stream.emit("end");
     stream.push(null);
   })();
 
