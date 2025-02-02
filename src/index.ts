@@ -28,7 +28,7 @@ function bundleBot(config: Config): BundlerReadable {
     return stream;
   }
 
-  stream.emit("step", {id : "bundle", status: "start"});
+  stream.emit("step", { id: "bundle", status: "start" });
 
   (async () => {
     try {
@@ -68,7 +68,11 @@ function bundleBot(config: Config): BundlerReadable {
         });
         fs.writeFileSync(file, obfuscated.getObfuscatedCode());
         if (config.log === "extend") {
-          stream.emit("step", { id: "obfuscation", status: "progress", message: file });
+          stream.emit("step", {
+            id: "obfuscation",
+            status: "progress",
+            message: file,
+          });
         }
       }
       stream.emit("step", { id: "obfuscation", status: "done" });
